@@ -24,4 +24,8 @@ public class MyLinkedList<T> implements MyList<T> {
     public int size() {
         return size;
     }
+
+    public boolean contains(Object o) {
+        return indexOf(o) != -1;
+    }
 }
