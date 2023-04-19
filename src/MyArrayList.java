@@ -5,6 +5,11 @@ public class MyArrayList<T> implements MyList<T>{
     private Object[] array;
     private int size;
 
+    public MyArrayList() {
+        this.array = new Object[INITIAL_CAPACITY];
+        this.size = 0;
+    }
+
     @Override
     public int size() {
         return size;
@@ -55,31 +60,51 @@ public class MyArrayList<T> implements MyList<T>{
 
     @Override
     public T remove(int index) {
-        return null;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index out of bounds: " + index);
+        }
+        T item = (T) array[index];
+        System.arraycopy(array, index + 1, array, index, size - index - 1);
+        size--;
+        return item;
     }
 
     @Override
     public void clear() {
-
+        array = new Object[INITIAL_CAPACITY];
+        size = 0;
     }
 
     @Override
     public T get(int index) {
-        return null;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index out of bounds: " + index);
+        }
+        return (T) array[index];
     }
 
     @Override
     public int indexOf(Object o) {
-        return 0;
+        for (int i = 0; i < size; i++) {
+            if (array[i].equals(o)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        for (int i = size - 1; i >= 0; i--) {
+            if (array[i].equals(o)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
     public void sort() {
-
+        Arrays.sort((T[]) array, 0, size);
     }
 }
