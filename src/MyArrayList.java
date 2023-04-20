@@ -6,7 +6,7 @@ public class MyArrayList<T> implements MyList<T>{
     private int size;
 
     public MyArrayList() {
-        this.array = new Object[INITIAL_CAPACITY];
+        this.array = (T[]) new Object[10];
         this.size = 0;
     }
 
