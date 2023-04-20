@@ -13,7 +13,20 @@ public class MyArrayList<T> implements MyList<T>{
         this.array = (T[]) new Object[10];
         this.size = 0;
     }
-
+    /**
+     * @ function AddingExtraSize - increases the size if needed
+     * @ there is no parameters
+     * @ returns void
+     * **/
+    public void AddingExtraSize(){
+        if(size == array.length){
+            T[] newArr = (T[]) new Object[array.length*2];
+            for(int i=0; i< array.length; i++){
+                newArr[i]= (T) array[i];
+            }
+            array = newArr;
+        }
+    }
     @Override
     public int size() {
         return size;
