@@ -14,24 +14,19 @@ public class MyArrayList<T> implements MyList<T>{
         this.size = 0;
     }
     /**
-     * @ function AddingExtraSize - increases the size if needed
+     * @ function size
      * @ there is no parameters
-     * @ returns void
+     * @ returns int
      * **/
-    public void AddingExtraSize(){
-        if(size == array.length){
-            T[] newArr = (T[]) new Object[array.length*2];
-            for(int i=0; i< array.length; i++){
-                newArr[i]= (T) array[i];
-            }
-            array = newArr;
-        }
-    }
     @Override
     public int size() {
         return size;
     }
-
+    /**
+     * @ function contains returns true if object o in the array
+     * @ there is no parameters
+     * @ returns boolean true or false
+     * **/
     @Override
     public boolean contains(Object o) {
         for (int i = 0; i < size; i++){
@@ -41,15 +36,24 @@ public class MyArrayList<T> implements MyList<T>{
         }
         return false;
     }
-
+    /**
+     * @ function add adds object to array
+     * @ parameter item is object that will be added
+     * @ returns void
+     * **/
     @Override
     public void add(T item) {
         if (size == array.length) {
             array = Arrays.copyOf(array, array.length * 2);
         }
-        array[size++] = item;
+        array[size++] = (T) item;
     }
-
+    /**
+     * @ function add gives index to object
+     * @ parameter item is object to addition
+     * @ parameter index where object will be added
+     * @ returns void
+     * **/
     @Override
     public void add(Object item, int index) {
         if (index < 0 || index > size) {
@@ -62,7 +66,12 @@ public class MyArrayList<T> implements MyList<T>{
         array[index] = item;
         size++;
     }
-
+    /**
+     * @ function remove deletes object
+     * @ parameter item is deleting object
+     * @ returns boolean
+     * **/
+    // Complexity: 0(n^2)
     @Override
     public boolean remove(Object item) {
         for (int i = 0; i < size; i++) {
@@ -74,7 +83,11 @@ public class MyArrayList<T> implements MyList<T>{
         }
         return false;
     }
-
+    /**
+     * @ function remove deletes object
+     * @ parameter index is index of deleting object
+     * @ returns Object
+     * **/
     @Override
     public T remove(int index) {
         if (index < 0 || index >= size) {
@@ -85,13 +98,21 @@ public class MyArrayList<T> implements MyList<T>{
         size--;
         return item;
     }
-
+    /**
+     * @ function clear clears array
+     * @ there is no parameters
+     * @ returns void
+     * **/
     @Override
     public void clear() {
         array = new Object[INITIAL_CAPACITY];
         size = 0;
     }
-
+    /**
+     * @ function get returns object by its index
+     * @ parameter index
+     * @ returns Object
+     * **/
     @Override
     public T get(int index) {
         if (index < 0 || index >= size) {
@@ -99,7 +120,11 @@ public class MyArrayList<T> implements MyList<T>{
         }
         return (T) array[index];
     }
-
+    /**
+     * @ function indexOf returns index
+     * @ parameter o for searching
+     * @ returns int
+     * **/
     @Override
     public int indexOf(Object o) {
         for (int i = 0; i < size; i++) {
@@ -109,7 +134,11 @@ public class MyArrayList<T> implements MyList<T>{
         }
         return -1;
     }
-
+    /**
+     * @ function lastIndexOf returns index
+     * @ parameter o for searching
+     * @ returns int
+     * **/
     @Override
     public int lastIndexOf(Object o) {
         for (int i = size - 1; i >= 0; i--) {
@@ -119,7 +148,11 @@ public class MyArrayList<T> implements MyList<T>{
         }
         return -1;
     }
-
+    /**
+     * @ function sort sorts array (bubble sort, O(n^2))
+     * @ there is no parameters
+     * @ returns void
+     * **/
     @Override
     public void sort() {
         Arrays.sort((T[]) array, 0, size);
