@@ -4,7 +4,11 @@ public class MyArrayList<T> implements MyList<T>{
     private static final int INITIAL_CAPACITY = 10;
     private Object[] array;
     private int size;
-
+    /**
+     * @ constructor MyArrayList
+     * @ there is no parameters
+     * @ returns void
+     **/
     public MyArrayList() {
         this.array = (T[]) new Object[10];
         this.size = 0;
