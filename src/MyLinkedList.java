@@ -1,48 +1,63 @@
-public class MyLinkedList<T> implements MyList<T> {
-    private class Node {
-        public T data;
-        T element;
-        Node next;
-        Node prev;
+import java.util.Arrays;
 
-        public Node(T element) {
-            this.element = element;
-            this.next = null;
-            this.prev = null;
+public class MyLinkedList<T> implements MyList<T> {
+    private Node<T> head;
+    private Node<T> tail;
+    private int size;
+
+    private static class Node<T> {
+        T item;
+        Node<T> next;
+        Node<T> prev;
+
+        Node(T item, Node<T> next, Node<T> prev) {
+            this.item = item;
+            this.next = next;
+            this.prev = prev;
         }
     }
-
-    private Node head;
-    private Node tail;
-    private int size;
 
     public MyLinkedList() {
         head = null;
         tail = null;
         size = 0;
     }
-
+    /**
+     * @ function size
+     * @ Returns the number of elements in this list
+     * **/
+    @Override
     public int size() {
         return size;
     }
-
+    /**
+     * @ Returns true if this list contains the specified element
+     * @ param o the element to search for
+     * **/
+    @Override
     public boolean contains(Object o) {
         return indexOf(o) != -1;
     }
-
+    /**
+     * @ Adds the specified element to the end of this list
+     * @ param item the element to add
+     * **/
+    @Override
     public void add(T item) {
-        Node newNode = new Node(item);
+        Node<T> newNode = new Node<>(item, null, tail);
         if (tail == null) {
             head = newNode;
-            tail = newNode;
         } else {
             tail.next = newNode;
-            newNode.prev = tail;
-            tail = newNode;
         }
+        tail = newNode;
         size++;
     }
-
+    /**
+     * @ Inserts the specified element at the specified position in this list
+     * @ param item  the element to add
+     * **/
+    @Override
     public void add(T item, int index) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
@@ -51,73 +66,126 @@ public class MyLinkedList<T> implements MyList<T> {
             add(item);
             return;
         }
-        Node newNode = new Node(item);
-        if (index == 0) {
-            newNode.next = head;
-            head.prev = newNode;
+        Node<T> node = getNode(index);
+        Node<T> newNode = new Node<>(item, node, node.prev);
+        if (node.prev == null) {
             head = newNode;
         } else {
-            Node current = head;
-            for (int i = 0; i < index; i++) {
-                current = current.next;
-            }
-            newNode.prev = current.prev;
-            newNode.next = current;
-            current.prev.next = newNode;
-            current.prev = newNode;
+            node.prev.next = newNode;
         }
+        node.prev = newNode;
         size++;
-        }
+    }
 
     @Override
     public boolean remove(T item) {
+        Node<T> node = head;
+        while (node != null) {
+            if (node.item.equals(item)) {
+                removeNode(node);
+                return true;
+            }
+            node = node.next;
+        }
         return false;
     }
 
+    @Override
     public T remove(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
-        Node current = head;
-        for (int i = 0; i < index; i++) {
-            current = current.next;
-        }
-        if (current == head) {
-            head = current.next;
+        Node<T> node = getNode(index);
+        removeNode(node);
+        return node.item;
+    }
+
+    private void removeNode(Node<T> node) {
+        if (node.prev == null) {
+            head = node.next;
         } else {
-            current.prev.next = current.next;
+            node.prev.next = node.next;
         }
-        if (current == tail) {
-            tail = current.prev;
+        if (node.next == null) {
+            tail = node.prev;
         } else {
-            current.next.prev = current.prev;
+            node.next.prev = node.prev;
         }
         size--;
-        return current.data;
     }
 
     @Override
     public void clear() {
-
+        head = null;
+        tail = null;
+        size = 0;
     }
 
     @Override
     public T get(int index) {
-        return null;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+        return getNode(index).item;
+    }
+
+    private Node<T> getNode(int index) {
+        if (index < size / 2) {
+            Node<T> node = head;
+            for (int i = 0; i < index; i++) {
+                node = node.next;
+            }
+            return node;
+        } else {
+            Node<T> node = tail;
+            for (int i = size - 1; i > index; i--) {
+                node = node.prev;
+            }
+            return node;
+        }
     }
 
     @Override
     public int indexOf(Object o) {
-        return 0;
+        Node<T> node = head;
+        for (int i = 0; i < size; i++) {
+            if (node.item.equals(o)) {
+                return i;
+            }
+            node = node.next;
+        }
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        Node<T> node = tail;
+        for (int i = size - 1; i >= 0; i--) {
+            if (node.item.equals(o)) {
+                return i;
+            }
+            node = node.prev;
+        }
+        return -1;
     }
 
     @Override
     public void sort() {
+        Object[] array = toArray();
+        Arrays.sort((T[]) array);
+        clear();
+        for (Object item : array) {
+            add((T) item);
+        }
+    }
 
+    private Object[] toArray() {
+        Object[] array = new Object[size];
+        Node<T> node = head;
+        for (int i = 0; i < size; i++) {
+            array[i] = node.item;
+            node = node.next;
+        }
+        return array;
     }
 }
