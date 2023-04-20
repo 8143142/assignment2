@@ -1,5 +1,6 @@
 public class MyLinkedList<T> implements MyList<T> {
     private class Node {
+        public T data;
         T element;
         Node next;
         Node prev;
@@ -53,6 +54,70 @@ public class MyLinkedList<T> implements MyList<T> {
         Node newNode = new Node(item);
         if (index == 0) {
             newNode.next = head;
+            head.prev = newNode;
+            head = newNode;
+        } else {
+            Node current = head;
+            for (int i = 0; i < index; i++) {
+                current = current.next;
+            }
+            newNode.prev = current.prev;
+            newNode.next = current;
+            current.prev.next = newNode;
+            current.prev = newNode;
         }
+        size++;
+        }
+
+    @Override
+    public boolean remove(T item) {
+        return false;
+    }
+
+    public T remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+        Node current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        if (current == head) {
+            head = current.next;
+        } else {
+            current.prev.next = current.next;
+        }
+        if (current == tail) {
+            tail = current.prev;
+        } else {
+            current.next.prev = current.prev;
+        }
+        size--;
+        return current.data;
+    }
+
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public T get(int index) {
+        return null;
+    }
+
+    @Override
+    public int indexOf(Object o) {
+        return 0;
+    }
+
+    @Override
+    public int lastIndexOf(Object o) {
+        return 0;
+    }
+
+    @Override
+    public void sort() {
+
     }
 }
