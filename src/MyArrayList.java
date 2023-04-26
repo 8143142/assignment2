@@ -125,4 +125,8 @@ public int lastIndexOf(Object o) {
 public void sort() {
         Arrays.sort((T[]) elements, 0, size);
         }
+        public void addAll(T[] array){
+                for(int i = 0; i<array.length; i++)
+                        add(array[i]);
+        }
 }
