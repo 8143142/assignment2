@@ -188,4 +188,9 @@ public class MyLinkedList<T> implements MyList<T> {
         }
         return array;
     }
+    public void addAll(T[] array){
+            for(int i = 0; i<array.length; i++)
+            add(array[i]);
+    }
+
 }
