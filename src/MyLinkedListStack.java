@@ -18,7 +18,12 @@ public class MyLinkedListStack<T> {
         return list.removeFirst();
     }
 
-
+    public T peek() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return list.getFirst();
+    }
 
     public boolean isEmpty() {
         return list.isEmpty();
