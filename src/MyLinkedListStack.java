@@ -1,35 +1,47 @@
 import java.util.EmptyStackException;
-
 public class MyLinkedListStack<T> {
-    private MyLinkedList<T> list;
-
+/*
+MyLinkedListStack - constructor
+ */
+    private MyLinkedList<T> stack;
     public MyLinkedListStack() {
-        list = new MyLinkedList<T>();
+        stack = new MyLinkedList<>();
     }
-
-    public void push(T item) {
-        list.addFirst(item);
+/*
+push - adds element at the top
+ */
+    public void push(T element) {
+        stack.add(element);
     }
-
-    public T pop() {
+/*
+pop - removes and returns top element
+ */
+    public T pop(){
+        if (isEmpty())  {
+            throw new EmptyStackException();
+        }
+        return stack.remove(0);
+    }
+/*
+peek - returns first elements
+ */
+    public T peek(){
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        return list.removeFirst();
+        return stack.get(0);
+    }
+/*
+isEmpty - checking empty or not
+ */
+    public boolean isEmpty(){
+        return stack.isEmpty();
+    }
+/*
+size - to get the size of the stack
+ */
+    public int size(){
+        return stack.size();
     }
 
-    public T peek() {
-        if (isEmpty()) {
-            throw new EmptyStackException();
-        }
-        return list.getFirst();
-    }
-
-    public boolean isEmpty() {
-        return list.isEmpty();
-    }
-
-    public int size() {
-        return list.size();
-    }
 }
