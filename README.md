@@ -1,3 +1,140 @@
+# assignment3 documentation <img src="https://github.com/blackcater/blackcater/raw/main/images/Hi.gif" height="32"/></h1>
+Here is full explanation of functions 
+--------    ---------    --------
+<b><p>MyLinkedListStack<p></b>
+<b>push</b><br>
+<b>Description:</b> *adds element at the top of the stack*<br><br>
+<b>Full code with some comments:</b>:white_check_mark:
+```
+  /*
+   push - adds element at the top
+   */
+    public void push(T element) {
+        stack.add(element);
+    }
+```
+--------    ---------    --------
+<b>pop</b><br>
+<b>Description:</b> *removes and returns top element of the stack*<br><br>
+<b>Full code with some comments:</b>:white_check_mark:
+```
+ /*
+    pop - removes and returns top element
+    */
+    public T pop(){
+        if (isEmpty())  {
+            throw new EmptyStackException();
+        }
+        return stack.remove(0);
+    }
+```
+--------    ---------    --------
+<b>peek</b><br>
+<b>Description:</b> *returns first elements*<br><br>
+<b>Full code with some comments:</b>:white_check_mark:
+```
+ /*
+    peek - returns first elements of stack
+    */
+    public T peek(){
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return stack.get(0);
+    }
+```
+--------    ---------    --------
+<b>isEmpty</b><br>
+<b>Description:</b> *checks the stack to empty or not*<br><br>
+<b>Full code with some comments:</b>:white_check_mark:
+```
+  /*
+    isEmpty - checking empty or not
+    */
+    public boolean isEmpty(){
+        return stack.isEmpty();
+    }
+```
+--------    ---------    --------
+<b>size</b><br>
+<b>Description:</b> *to get the size of the stack*<br><br>
+<b>Full code with some comments:</b>:white_check_mark:
+```
+ /*
+    size - to get the size of the stack
+    */
+    public int size(){
+        return stack.size();
+    }
+```
+--------    ---------    --------
+<b><p>MyLinkedListQueue<p></b>
+<b>enqueue</b><br>
+<b>Description:</b> *adds  element at the end of the queue*<br><br>
+<b>Full code with some comments:</b>:white_check_mark:
+```
+ /*
+    enqueue - adds  element at the end of the queue
+     */
+    public void enqueue(E element) {
+        queue.add(element);
+    }
+```
+--------    ---------    --------
+<b>dequeue</b><br>
+<b>Description:</b> *removes and returns front element of the queue*<br><br>
+<b>Full code with some comments:</b>:white_check_mark:
+```
+ /*
+    dequeue - removes and returns front element of the queue
+     */
+    public E dequeue(){
+        if(isEmpty()){
+            throw new NoSuchElementException();
+        }
+        return queue.remove(0);
+    }
+```
+--------    ---------    --------
+<b>peek</b><br>
+<b>Description:</b> *returns first elements of the queue*<br><br>
+<b>Full code with some comments:</b>:white_check_mark:
+```
+  /*
+    peek - returns the first elements of the queue
+     */
+    public E peek(){
+        if(isEmpty()){
+            throw new NoSuchElementException();
+        }
+        return queue.get(0);
+    }
+```
+--------    ---------    --------
+<b>isEmpty</b><br>
+<b>Description:</b> *checks the queue to empty or not*<br><br>
+<b>Full code with some comments:</b>:white_check_mark:
+```
+ /*
+    isEmpty - checking empty or not
+     */
+    public int size(){
+        return queue.size();
+    }
+```
+--------    ---------    --------
+<b>size</b><br>
+<b>Description:</b> *to get the size of the queue*<br><br>
+<b>Full code with some comments:</b>:white_check_mark:
+```
+   /*
+    size - to get the size of the queue
+     */
+    public boolean isEmpty(){
+        return queue.isEmpty();
+    }
+```
+--------    ---------    --------
 # assignment2 documentation <img src="https://github.com/blackcater/blackcater/raw/main/images/Hi.gif" height="32"/></h1>
 Here is full explanation of functions 
 --------    ---------    --------
@@ -292,4 +429,4 @@ public void clear() {
             return node;
         }
     }
-```
+``
