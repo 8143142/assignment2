@@ -13,4 +13,8 @@ public interface MyList<T> {
     void addAll(T[] array);
 
     void addFirst(T item);
+
+    <T> T removeFirst();
+
+    boolean isEmpty();
 }
