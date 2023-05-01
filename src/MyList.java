@@ -19,4 +19,6 @@ public interface MyList<T> {
     boolean isEmpty();
 
     <T> T getFirst();
+
+    void addLast(T item);
 }
