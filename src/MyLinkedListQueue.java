@@ -1,35 +1,47 @@
 import java.util.NoSuchElementException;
 
-public class MyLinkedListQueue<T> {
-    private MyLinkedList<T> list;
-
-    public MyLinkedListQueue() {
-        list = new MyLinkedList<>();
+public class MyLinkedListQueue<E> {
+    private MyLinkedList<E> queue;
+    /*
+    MyLinkedListQueue - constructor
+     */
+    public MyLinkedListQueue(){
+        queue = new MyLinkedList<E>();
     }
-
-    public void enqueue(T item) {
-        list.addLast(item);
+    /*
+    enqueue - adds  element at the end of the queue
+     */
+    public void enqueue(E element) {
+        queue.add(element);
     }
-
-    public T dequeue() {
-        if (isEmpty()) {
+    /*
+    dequeue - removes and returns front element of the queue
+     */
+    public E dequeue(){
+        if(isEmpty()){
             throw new NoSuchElementException();
         }
-        return list.removeFirst();
+        return queue.remove(0);
     }
-
-    public T peek() {
-        if (isEmpty()) {
+    /*
+    peek - returns the first elements of the queue
+     */
+    public E peek(){
+        if(isEmpty()){
             throw new NoSuchElementException();
         }
-        return list.getFirst();
+        return queue.get(0);
     }
-
-    public boolean isEmpty() {
-        return list.isEmpty();
+    /*
+    isEmpty - checking empty or not
+     */
+    public int size(){
+        return queue.size();
     }
-
-    public int size() {
-        return list.size();
+    /*
+    size - to get the size of the queue
+     */
+    public boolean isEmpty(){
+        return queue.isEmpty();
     }
 }
