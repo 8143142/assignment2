@@ -29,5 +29,7 @@ public class MyLinkedListStack<T> {
         return list.isEmpty();
     }
 
-
+    public int size() {
+        return list.size();
+    }
 }
