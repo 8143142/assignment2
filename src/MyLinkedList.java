@@ -5,6 +5,24 @@ public class MyLinkedList<T> implements MyList<T> {
     private Node<T> tail;
     private int size;
 
+    public void addFirst(T item) {
+    }
+
+    public T removeFirst() {
+        return null;
+    }
+
+    public T getFirst() {
+        return null;
+    }
+
+    public boolean isEmpty() {
+        return false;
+    }
+
+    public void addLast(T item) {
+    }
+
     private static class Node<T> {
         T item;
         Node<T> next;

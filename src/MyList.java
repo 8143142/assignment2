@@ -11,14 +11,4 @@ public interface MyList<T> {
     int lastIndexOf(Object o);
     void sort();
     void addAll(T[] array);
-
-    void addFirst(T item);
-
-    <T> T removeFirst();
-
-    boolean isEmpty();
-
-    <T> T getFirst();
-
-    void addLast(T item);
 }
