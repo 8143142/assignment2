@@ -17,4 +17,6 @@ public interface MyList<T> {
     <T> T removeFirst();
 
     boolean isEmpty();
+
+    <T> T getFirst();
 }
